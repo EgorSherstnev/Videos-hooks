@@ -6,7 +6,7 @@ import VideoDetail from "./VideoDetail";
 
 const App = () => {
     const [ videos, setVideos ] = useState([]);
-    const [ selectedVideo, setSelectedVideo ] = useState(null);
+    const [ selectedViseo, setSelectedVideo ] = useState(null);
 
     useEffect(() => {
         onTermSubmit('buildings');
@@ -23,6 +23,10 @@ const App = () => {
         setSelectedVideo(response.data.items[0])
     };
 
+    const onVideoSelect = (video) => {
+        setSelectedVideo(video);
+    }
+
     return (
         <div className="ui container">
             <SearchBar onFormSubmit={onTermSubmit}/>
@@ -33,7 +37,7 @@ const App = () => {
                     </div>
                     <div className="five wide column">
                         <VideoList 
-                            onVideoSelect={setSelectedVideo} 
+                            onVideoSelect={onVideoSelect} 
                             videos={videos} 
                         />
                     </div>
